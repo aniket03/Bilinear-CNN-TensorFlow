@@ -12,6 +12,7 @@ from __future__ import print_function
 import tensorflow as tf
 import numpy as np
 import tflearn
+from sklearn.model_selection import train_test_split
 from tflearn.data_preprocessing import ImagePreprocessing
 from tflearn.data_augmentation import ImageAugmentation
 import os
@@ -25,8 +26,10 @@ import logging
 import random
 import time
 
+from utils.create_cars_data import prep_cars_data
 
 
+NO_LABELS = None
 
 
 def random_flip_right_to_left(image_batch):
@@ -252,8 +255,8 @@ class vgg16:
 
         with tf.name_scope('fc-new') as scope:
 
-            fc3w = tf.get_variable('weights', [512*512, 100], initializer=tf.contrib.layers.xavier_initializer(), trainable=True)
-            fc3b = tf.Variable(tf.constant(1.0, shape=[100], dtype=tf.float32), name='biases', trainable=True)
+            fc3w = tf.get_variable('weights', [512*512, NO_LABELS], initializer=tf.contrib.layers.xavier_initializer(), trainable=True)
+            fc3b = tf.Variable(tf.constant(1.0, shape=[NO_LABELS], dtype=tf.float32), name='biases', trainable=True)
             self.fc3l = tf.nn.bias_add(tf.matmul(self.z_l2, fc3w), fc3b)
             self.last_layer_parameters += [fc3w, fc3b]
             self.parameters += [fc3w, fc3b]
@@ -271,14 +274,13 @@ class vgg16:
 if __name__ == '__main__':
 
     #with tf.device('/cpu:0'):
-    train_data = h5py.File('../new_train.h5', 'r')
-    val_data = h5py.File('../new_val.h5', 'r')
-    
+    X_train, X_test, Y_train, Y_test = prep_cars_data()
+
+    X_train, X_val, Y_train, Y_val = train_test_split(
+        X_train, Y_train, test_size=0.3, shuffle=True)
 
     print('Input data read complete')
-
-    X_train, Y_train = train_data['X'], train_data['Y']
-    X_val, Y_val = val_data['X'], val_data['Y']
+    NO_LABELS = len(set(Y_train))
 
     print("Data shapes -- (train, val, test)", X_train.shape, X_val.shape)
     X_train, Y_train = shuffle(X_train, Y_train)
@@ -292,7 +294,7 @@ if __name__ == '__main__':
     #sess = tf.InteractiveSession()
     #with tf.device('/gpu:0'):
     imgs = tf.placeholder(tf.float32, [None, 448, 448, 3])
-    target = tf.placeholder("float", [None, 100])
+    target = tf.placeholder("float", [None, NO_LABELS])
     #print 'Creating graph'
     vgg = vgg16(imgs, 'vgg16_weights.npz', sess)
 
@@ -327,16 +329,16 @@ if __name__ == '__main__':
     lr = 1.0
     base_lr = 1.0
     break_training_epoch = 15
+    total_train_length = len(X_train)
     for epoch in range(100):
         avg_cost = 0.
-        total_batch = int(6000/batch_size)
+        total_batch = int(total_train_length/batch_size)
         X_train, Y_train = shuffle(X_train, Y_train)
         
 
         
         # Uncomment following section if you want to break training at a particular epoch
 
-        '''
         if epoch==break_training_epoch:
             last_layer_weights = []
             for v in vgg.parameters:
@@ -347,7 +349,6 @@ if __name__ == '__main__':
             np.savez('last_layers_epoch_15.npz',last_layer_weights)
             print("Last layer weights saved")
             break
-        '''
 
         for i in range(total_batch):
             batch_xs, batch_ys = X_train[i*batch_size:i*batch_size+batch_size], Y_train[i*batch_size:i*batch_size+batch_size]
@@ -363,7 +364,7 @@ if __name__ == '__main__':
             cost = sess.run(loss, feed_dict={imgs: batch_xs, target: batch_ys})
             if i % 100 == 0:
                 #print ('Learning rate: ', (str(lr)))
-                if epoch <= finetune_step:
+                if epoch <= break_training_epoch:
                     print("Training last layer of BCNN_DD")
 
                 print("Epoch:", '%03d' % (epoch+1), "Step:", '%03d' % i,"Loss:", str(cost))
