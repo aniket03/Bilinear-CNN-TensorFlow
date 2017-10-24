@@ -293,7 +293,7 @@ if __name__ == '__main__':
     sess = tf.Session()
     #sess = tf.InteractiveSession()
     #with tf.device('/gpu:0'):
-    imgs = tf.placeholder(tf.float32, [None, 224, 224, 3])
+    imgs = tf.placeholder(tf.float32, [None, 448, 448, 3])
     target = tf.placeholder("float", [None, NO_LABELS])
     #print 'Creating graph'
     vgg = vgg16(imgs, 'vgg16_weights.npz', sess)

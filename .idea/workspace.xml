@@ -17,7 +17,7 @@
         <entry file="file://$PROJECT_DIR$/core/bcnn_DD_woft.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="277">
-              <caret line="333" column="36" lean-forward="false" selection-start-line="333" selection-start-column="29" selection-end-line="333" selection-end-column="36" />
+              <caret line="295" column="48" lean-forward="false" selection-start-line="295" selection-start-column="48" selection-end-line="295" selection-end-column="48" />
               <folding>
                 <element signature="e#441#478#0" expanded="true" />
               </folding>
@@ -83,6 +83,7 @@
       <find>512</find>
       <find>.npz</find>
       <find>shuffle</find>
+      <find>224</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -268,7 +269,7 @@
     <entry file="file://$PROJECT_DIR$/core/bcnn_DD_woft.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="277">
-          <caret line="333" column="36" lean-forward="false" selection-start-line="333" selection-start-column="29" selection-end-line="333" selection-end-column="36" />
+          <caret line="295" column="48" lean-forward="false" selection-start-line="295" selection-start-column="48" selection-end-line="295" selection-end-column="48" />
           <folding>
             <element signature="e#441#478#0" expanded="true" />
           </folding>
