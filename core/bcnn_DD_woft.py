@@ -283,9 +283,9 @@ if __name__ == '__main__':
     NO_LABELS = len(set(Y_train))
 
     print("Data shapes -- (train, val, test)", X_train.shape, X_val.shape)
-    X_train, Y_train = shuffle(X_train, Y_train)
-    
-    X_val, Y_val = shuffle(X_val, Y_val)
+    # X_train, Y_train = shuffle(X_train, Y_train)
+    #
+    # X_val, Y_val = shuffle(X_val, Y_val)
     #print Y_train[0]
     print("Device placement on. Creating Session")
     
