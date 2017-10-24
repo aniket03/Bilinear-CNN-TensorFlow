@@ -331,7 +331,7 @@ if __name__ == '__main__':
     for epoch in range(100):
         avg_cost = 0.
         total_batch = int(total_train_length/batch_size)
-        X_train, Y_train = shuffle(X_train, Y_train)
+        # X_train, Y_train = shuffle(X_train, Y_train)
         
 
         
