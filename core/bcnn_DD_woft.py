@@ -293,7 +293,7 @@ if __name__ == '__main__':
     sess = tf.Session()
     #sess = tf.InteractiveSession()
     #with tf.device('/gpu:0'):
-    imgs = tf.placeholder(tf.float32, [None, 448, 448, 3])
+    imgs = tf.placeholder(tf.float32, [None, 224, 224, 3])
     target = tf.placeholder("float", [None, NO_LABELS])
     #print 'Creating graph'
     vgg = vgg16(imgs, 'vgg16_weights.npz', sess)
@@ -326,8 +326,6 @@ if __name__ == '__main__':
 
     print('Starting training')
 
-    lr = 1.0
-    base_lr = 1.0
     break_training_epoch = 15
     total_train_length = len(X_train)
     for epoch in range(100):
