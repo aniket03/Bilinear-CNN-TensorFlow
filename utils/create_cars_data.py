@@ -33,10 +33,12 @@ def get_images_numpy_array_and_labels(image_paths, image_labels):
 
 def prep_cars_data():
 
-    train_images_dir = 'cars_data/train_images'
-    test_images_dir = 'cars_data/test_images'
-    train_annotations_file_path = 'cars_data/devkit/cars_train_annos.mat'
-    test_annotations_file_path = 'cars_data/devkit/cars_test_annos.mat'
+    train_images_dir = '/home/ubuntu/squadai_experimental_data_0/bcnn_experiments/cars_data/train_images'
+    test_images_dir = '/home/ubuntu/squadai_experimental_data_0/bcnn_experiments/cars_data/test_images'
+    train_annotations_file_path = '/home/ubuntu/squadai_experimental_data_0/bcnn_experiments' \
+                                  '/cars_data/devkit/cars_train_annos.mat'
+    test_annotations_file_path = '/home/ubuntu/squadai_experimental_data_0/bcnn_experiments' \
+                                 '/cars_data/devkit/cars_test_annos.mat'
 
     train_images_paths = [os.path.join(train_images_dir, img_name) for img_name in os.listdir(train_images_dir)]
     test_images_paths = [os.path.join(test_images_dir, img_name) for img_name in os.listdir(test_images_dir)]
