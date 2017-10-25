@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7ba425b9-c9c3-49d9-81fa-097fb46fc9b6" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/bcnn_DD_woft.py" afterPath="$PROJECT_DIR$/core/bcnn_DD_woft.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,8 +17,8 @@
       <file leaf-file-name="bcnn_DD_woft.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/core/bcnn_DD_woft.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="277">
-              <caret line="295" column="48" lean-forward="false" selection-start-line="295" selection-start-column="48" selection-end-line="295" selection-end-column="48" />
+            <state relative-caret-position="403">
+              <caret line="288" column="5" lean-forward="true" selection-start-line="288" selection-start-column="5" selection-end-line="288" selection-end-column="5" />
               <folding>
                 <element signature="e#441#478#0" expanded="true" />
               </folding>
@@ -84,6 +85,9 @@
       <find>.npz</find>
       <find>shuffle</find>
       <find>224</find>
+      <find>32</find>
+      <find>Y_train</find>
+      <find>y_train</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -124,11 +128,6 @@
             <path>
               <item name="Bilinear-CNN-TensorFlow" type="b2602c69:ProjectViewProjectNode" />
               <item name="Bilinear-CNN-TensorFlow" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Bilinear-CNN-TensorFlow" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Bilinear-CNN-TensorFlow" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -268,8 +267,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/core/bcnn_DD_woft.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="295" column="48" lean-forward="false" selection-start-line="295" selection-start-column="48" selection-end-line="295" selection-end-column="48" />
+        <state relative-caret-position="403">
+          <caret line="288" column="5" lean-forward="true" selection-start-line="288" selection-start-column="5" selection-end-line="288" selection-end-column="5" />
           <folding>
             <element signature="e#441#478#0" expanded="true" />
           </folding>

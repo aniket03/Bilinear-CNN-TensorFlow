@@ -12,6 +12,7 @@ from __future__ import print_function
 import tensorflow as tf
 import numpy as np
 import tflearn
+from keras.utils import np_utils
 from sklearn.model_selection import train_test_split
 from tflearn.data_preprocessing import ImagePreprocessing
 from tflearn.data_augmentation import ImageAugmentation
@@ -276,13 +277,19 @@ if __name__ == '__main__':
     #with tf.device('/cpu:0'):
     X_train, X_test, Y_train, Y_test = prep_cars_data()
 
-    X_train, X_val, Y_train, Y_val = train_test_split(
-        X_train, Y_train, test_size=0.3, shuffle=True)
-
     print('Input data read complete')
     NO_LABELS = len(set(Y_train))
 
-    print("Data shapes -- (train, val, test)", X_train.shape, X_val.shape)
+    print('Encode labels to One hot vectors')
+    Y_train = Y_train - np.ones(len(X_train))
+    Y_test = Y_test - np.ones(len(X_test))
+    Y_train = np_utils.to_categorical(Y_train, NO_LABELS)
+    Y_test = np_utils.to_categorical(Y_test, NO_LABELS)
+
+    X_train, X_val, Y_train, Y_val = train_test_split(
+        X_train, Y_train, test_size=0.3, shuffle=True)
+
+    print("Data shapes -- (train, val, test)", X_train.shape, X_val.shape, X_test.shape)
     # X_train, Y_train = shuffle(X_train, Y_train)
     #
     # X_val, Y_val = shuffle(X_val, Y_val)
